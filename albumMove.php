@@ -16,6 +16,18 @@ $client = new Google_Client();
 $client->setAuthConfig('client_id.json');
 $client->addScope(Google_Service_Drive::DRIVE);
 
+function url_get_contents ($Url) {
+    if (!function_exists('curl_init')){ 
+        die('CURL is not installed!');
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
 function photo_download($album_id, $album_name,$folderId,$drive)
 {
 	global $fb;
@@ -43,7 +55,8 @@ function photo_download($album_id, $album_name,$folderId,$drive)
 		  'name' => uniqid().'.jpg',
 		  'parents' => array($album_folder)
 		));
-		$content = file_get_contents($photo['source'] );
+		//$content = file_get_contents($photo['source'] );
+		$content = url_get_contents($photo['source'] );
 		$file = $drive->files->create($fileMetadata, array(
 		  'data' => $content,
 		  'mimeType' => 'image/jpeg',

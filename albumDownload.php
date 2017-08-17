@@ -13,6 +13,18 @@ $download_location = 'downloads/'.uniqid().'/';
 // Mode is 0777 which means the widest possible access of directory
 mkdir($download_location, 0777);
 
+function url_get_contents ($Url) {
+    if (!function_exists('curl_init')){ 
+        die('CURL is not installed!');
+    }
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $Url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return $output;
+}
+
 function photo_download($album_id, $album_name)
 {
 	global $fb;
@@ -35,7 +47,8 @@ function photo_download($album_id, $album_name)
 	}
 	
 	foreach ($photos as $photo) {
-		file_put_contents( $album_location.'/'.uniqid().".jpg", fopen( $photo['source'], 'r') );
+		//file_put_contents( $album_location.'/'.uniqid().".jpg", fopen( $photo['source'], 'r') );
+		file_put_contents( $album_location.'/'.uniqid().".jpg", url_get_contents( $photo['source']) );
 	}
 }
 

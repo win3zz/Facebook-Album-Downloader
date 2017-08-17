@@ -16,6 +16,17 @@ Download Facebook album with a simply click, Backup with Google Drive.
 ![N|Solid](https://s3-us-west-1.amazonaws.com/powr/common_images/livedemo.png)
 > https://ahmedabadexpress.co.in/fb/
 
+### Guidelines 
+- Replace client_id.json with your Google API credentials json file
+- Change fb_config.php according to your Facebook App credentials
+
+```php
+$fb = new Facebook\Facebook([
+	'app_id' => 'YOUR_APP_ID_HERE',
+	'app_secret' => 'YOUR_APP_SECRET_HERE',
+	'default_graph_version' => 'v2.10',
+]);
+```
 ### Library Used:
 Following are the list of Library which is used in this application development.
 

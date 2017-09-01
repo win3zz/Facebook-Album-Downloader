@@ -46,10 +46,13 @@ function photo_download($album_id, $album_name)
 		mkdir($album_location, 0777);
 	}
 	
-	foreach ($photos as $photo) {
-		//file_put_contents( $album_location.'/'.uniqid().".jpg", fopen( $photo['source'], 'r') );
-		file_put_contents( $album_location.'/'.uniqid().".jpg", url_get_contents( $photo['source']) );
-	}
+	do{
+		foreach ($photos as $photo) {
+			//file_put_contents( $album_location.'/'.uniqid().".jpg", fopen( $photo['source'], 'r') );
+			file_put_contents( $album_location.'/'.uniqid().".jpg", url_get_contents( $photo['source']) );
+		}
+		$photos = $fb->next($photos);
+	}while(!is_null($photos));
 }
 
 function make_zip()

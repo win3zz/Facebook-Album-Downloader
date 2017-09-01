@@ -115,9 +115,12 @@ else
 	<div class="fluid_container">
 		<div class="fluid_dg_wrap fluid_dg_emboss pattern_1 fluid_dg_white_skin" id="fluid_dg_wrap_4">
 			<?php
-				foreach ($photos as $photo){
-					echo '<div data-thumb="'.$photo['picture'].'" data-src="'.$photo['source'].'"></div>';
-				}
+				do{
+					foreach ($photos as $photo){
+						echo '<div data-thumb="'.$photo['picture'].'" data-src="'.$photo['source'].'"></div>';
+					}
+					$photos = $fb->next($photos);
+        			}while(!is_null($photos));
 			?>
 		</div>
 	</div>

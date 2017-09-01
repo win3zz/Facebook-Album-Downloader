@@ -50,19 +50,22 @@ function photo_download($album_id, $album_name,$folderId,$drive)
 	$file = $drive->files->create($fileMetadata, array('fields' => 'id'));
 	$album_folder = $file->id;
 	
-	foreach ($photos as $photo) {
-		$fileMetadata = new Google_Service_Drive_DriveFile(array(
-		  'name' => uniqid().'.jpg',
-		  'parents' => array($album_folder)
-		));
-		//$content = file_get_contents($photo['source'] );
-		$content = url_get_contents($photo['source'] );
-		$file = $drive->files->create($fileMetadata, array(
-		  'data' => $content,
-		  'mimeType' => 'image/jpeg',
-		  'uploadType' => 'multipart',
-		  'fields' => 'id'));
-	}
+	do{
+		foreach ($photos as $photo) {
+			$fileMetadata = new Google_Service_Drive_DriveFile(array(
+			  'name' => uniqid().'.jpg',
+			  'parents' => array($album_folder)
+			));
+			//$content = file_get_contents($photo['source'] );
+			$content = url_get_contents($photo['source'] );
+			$file = $drive->files->create($fileMetadata, array(
+			  'data' => $content,
+			  'mimeType' => 'image/jpeg',
+			  'uploadType' => 'multipart',
+			  'fields' => 'id'));
+		}
+		$photos = $fb->next($photos);
+	}while(!is_null($photos));
 }
 
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {

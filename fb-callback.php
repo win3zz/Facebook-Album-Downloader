@@ -230,19 +230,40 @@ if (!isset($_SESSION['fb_access_token'] )) {
 								echo 'Facebook SDK returned an error: ' . $e->getMessage();
 								exit;
 							}
-							foreach ($photos as $photo) {
-								if ($cover_photo_id == $photo['id'])
-								{
-									?>
+							$is_cover = False;
+							$count_pic = 0;
+							$album_cover = '';
+							do{
+								foreach ($photos as $photo) {
+									if ($cover_photo_id == $photo['id'])
+									{
+										$is_cover = True;
+										$album_cover = $photo['source'];
+									}
+								}
+								$count_pic += count($photos);
+								$photos = $fb->next($photos);
+							}while(!is_null($photos));
+
+							?>
 						<div class="col-md-4 col-sm-6">
 							<div class="product-item">
 								<div class="gallery-item">
 									<div class="overlay">
 										<a href="<?php echo 'slideshow.php?album_id='.$album['id']; ?>" class="fa fa-expand"></a>
 									</div>	
-									<img src="<?php echo $photo['source']; ?>" height="300" alt="<?php echo $album['id']; ?>" /> 
+									<?php 
+									if ($is_cover)
+									{
+										echo '<img src="'.$album_cover.'" height="300" alt="'.$album['id'].'"/>'; 
+									}
+									else
+									{
+										
+									}
+									?>
 									<div class="content-gallery">
-										<h3><?php echo $album['name'].' ('.count($photos).')'; ?></h3>
+										<h3><?php echo $album['name'].' ('.$count_pic.')'; ?></h3>
 									</div>
 								</div>
 								<label class="btn button btn-block ">
@@ -252,9 +273,7 @@ if (!isset($_SESSION['fb_access_token'] )) {
 								<button id="<?php echo $album['id'].','.$album['name']; ?>" data-toggle="tooltip" title="Move this album" class="btn button album_move_btn">Move to Drive</button>
 							</div> <!-- /.product-item -->
 						</div> <!-- /.col-md-4 -->		
-									<?php
-								}
-							}
+							<?php
 						}
 					?>
 					</div> <!-- /.row -->

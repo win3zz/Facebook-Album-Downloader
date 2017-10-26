@@ -250,7 +250,10 @@ if (!isset($_SESSION['fb_access_token'] )) {
 							<div class="product-item">
 								<div class="gallery-item">
 									<div class="overlay">
-										<a href="<?php echo 'slideshow.php?album_id='.$album['id']; ?>" class="fa fa-expand"></a>
+										<!-- Old Slideshow -->
+										<!-- <a href="<?php //echo 'slideshow.php?album_id='.$album['id']; ?>" class="fa fa-expand"></a> -->
+										<a href="<?php echo 'slideshow2.php?album_id='.$album['id']; ?>" class="fa fa-expand"></a>
+										
 									</div>	
 									<?php 
 									if ($is_cover)

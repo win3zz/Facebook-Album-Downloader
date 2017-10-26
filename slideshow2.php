@@ -108,6 +108,13 @@ else
 									</script>
 								<?php
 								$isFirstLoad = False;
+								echo "<div class=\"content\">";
+									echo "<div>";
+										echo '<a href="'.$photo['source'].'">';
+											echo '<img src="'.$photo['picture'].'" class=\"thumb\" />';
+										echo "</a>";
+									echo "</div>";
+								echo "</div>";
 							}
 							else
 							{

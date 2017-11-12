@@ -16,6 +16,7 @@
 
     <testsuite name="Zipper Test Suite">
         <directory suffix=".php">./UnitTests</directory>
+        <exclude>./UnitTests/simpletest</exclude>
     </testsuite>
 
 </phpunit>

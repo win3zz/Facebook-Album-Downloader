@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        backupGlobals="true"
+        colors="true"
+        stopOnFailure="false"
+        bootstrap="UnitTests/bootstrap.php">
+
+    <filter>
+        <whitelist>
+            <directory>./libs</directory>
+            <exclude>
+                <directory>./UnitTests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <testsuite name="CalculatorApp Test Suite">
+        <directory suffix=".php">./UnitTests</directory>
+    </testsuite>
+
+</phpunit>

@@ -1,5 +1,5 @@
 <?php
-require_once('simpletest/autorun.php');
+//require_once('simpletest/autorun.php');
 require_once(dirname(__FILE__)."/../unlink_directory.php");
 
 class TestOfFileDelete extends UnitTestCase {

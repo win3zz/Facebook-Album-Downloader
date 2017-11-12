@@ -14,7 +14,7 @@
         </whitelist>
     </filter>
 
-    <testsuite name="CalculatorApp Test Suite">
+    <testsuite name="Zipper Test Suite">
         <directory suffix=".php">./UnitTests</directory>
     </testsuite>
 

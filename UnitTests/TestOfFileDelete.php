@@ -1,6 +1,6 @@
 <?php
 require_once('simpletest/autorun.php');
-require_once('../fb/unlink_directory.php');
+require_once('../unlink_directory.php');
 
 class TestOfFileDelete extends UnitTestCase {
 	public $unlink_directory;

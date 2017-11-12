@@ -1,6 +1,6 @@
 <?php
 require_once('simpletest/autorun.php');
-require_once('../fb/zipper.php');
+require_once('../zipper.php');
 
 class TestOfZipper extends UnitTestCase {
 	public $zipper;

@@ -1,8 +1,8 @@
 <?php
-//require_once('simpletest/autorun.php');
+require_once('simpletest/autorun.php');
 require_once(dirname(__FILE__)."/../zipper.php");
 
-class TestOfZipper extends PHPUnit_Framework_TestCase { //UnitTestCase {
+class TestOfZipper extends UnitTestCase { //PHPUnit_Framework_TestCase {
 	public $zipper;
 	public function setUp() {
 	$this->zipper = new zipper();
